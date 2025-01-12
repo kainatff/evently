@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton } from "@clerk/nextjs";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -22,12 +27,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <body
         className={poppins.variable}
       >
+        {/* <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn> */}
         {children}
       </body>
     </html>
+    </ClerkProvider>
   );
 }
